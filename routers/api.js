@@ -12,9 +12,14 @@ router
   .post(async (req, res) => {
     try {
       const book = await Book.create(req.body);
+
       res.status(201).json({ title: book.title, _id: book._id });
     } catch (err) {
-      res.status(400).send(err);
+      if (err._message === 'Book validation failed') {
+        res.status(400).send('missing title');
+      } else {
+        res.status(500).send(err);
+      }
     }
   })
 
@@ -67,13 +72,13 @@ router
         }
       );
 
-      if (!book) res.status(404).send('no book exists');
+      if (!book) return res.status(404).send('no book exists');
 
-      res
+      return res
         .status(201)
         .json({ _id: book._id, title: book.title, comments: book.comments });
     } catch (err) {
-      res.status(400).send(err);
+      return res.status(400).send(err);
     }
   })
 
@@ -84,13 +89,13 @@ router
     try {
       const book = await Book.findById(req.params._id);
 
-      if (!book) res.status(404).send('no book exists');
+      if (!book) return res.status(404).send('no book exists');
 
-      res
+      return res
         .status(200)
         .json({ _id: book._id, title: book.title, comments: book.comments });
     } catch (err) {
-      res.status(500).send(err);
+      return res.status(500).send(err);
     }
   })
 
@@ -101,11 +106,11 @@ router
     try {
       const book = await Book.findByIdAndDelete(req.params._id);
 
-      if (!book) res.status(404).send('no book exists');
+      if (!book) return res.status(404).send('no book exists');
 
-      res.status(200).send('delete successful');
+      return res.status(200).send('delete successful');
     } catch (err) {
-      res.status(500).send(err);
+      return res.status(500).send(err);
     }
   });
 

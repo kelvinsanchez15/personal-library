@@ -44,8 +44,4 @@ app.get('/', (req, res) => res.render('index', { title: 'Personal Library' }));
 // Routing for API
 app.use('/api/books', apiRouter);
 
-// Server listening
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server running at port ${port}`));
-
 module.exports = app; // for testing

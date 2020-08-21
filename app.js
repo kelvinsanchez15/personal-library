@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 // Routes
-const routes = require('./routes/routes');
+const apiRouter = require('./routers/api');
 
 const app = express();
 
@@ -42,7 +42,7 @@ app.set('view engine', 'pug');
 app.get('/', (req, res) => res.render('index', { title: 'Personal Library' }));
 
 // Routing for API
-app.use('/api/books', routes);
+app.use('/api/books', apiRouter);
 
 // Server listening
 const port = process.env.PORT || 3000;

@@ -1,1 +1,28 @@
-h1 Hello from Index
+doctype html
+html
+  head
+    include includes/head.pug
+    title= title    
+  body
+    div.container      
+      div.col.text-center          
+        a.h1.text-dark(href="/") Personal Library
+      h2 User Stories:
+      ul.list-group.mb-4
+        li.list-group-item Nothing from my website will be cached in my client as a security measure.
+        li.list-group-item I will see that the site is powered by 'PHP 4.2.0' even though it isn't as a security measure.
+        li.list-group-item I can #[strong POST] a title to #[code /api/books] to add a book and returned will be the object with the title and a unique _id.        
+        li.list-group-item I can #[strong GET] #[code /api/books] to retrieve an array of all books containing title, _id, and commentcount.
+        li.list-group-item I can #[strong GET] #[code /api/books/{_id}] to retrieve a single object of a book containing title, _id, and an array of comments (empty array if no comments present).
+        li.list-group-item I can #[strong POST] a comment to #[code /api/books/{_id}] to add a comment to a book and returned will be the books object similar to #[strong GET] #[code /api/books/{_id}].
+        li.list-group-item I can #[strong DELETE] #[code /api/books/{_id}] to delete a book from the collection. Returned will be #[em 'delete successful' if successful].
+        li.list-group-item If I try to request a book that doesn't exist I will get a #[em 'no book exists' message].
+        li.list-group-item I can send a delete request to /api/books to delete all books in the database. Returned will be #[em 'complete delete successful'] if successful.
+        li.list-group-item All 6 functional tests requiered are complete and passing.
+
+
+      h2 Front End Example:
+      a.h3.text-primary(href="/apitest/issues") Go to {project_url}/apitest/issues
+      
+
+    include includes/foot.pug

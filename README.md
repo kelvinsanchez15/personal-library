@@ -1,3 +1,11 @@
+# Quality Assurance Project #3: Personal Library.
+
+## View project
+
+[Personal Library](https://personal-library-kel.glitch.me/)
+
+## User Stories
+
 1. Nothing from my website will be cached in my client as a security measure.
 
 2. I will see that the site is powered by 'PHP 4.2.0' even though it isn't as a security measure.
@@ -18,11 +26,15 @@
 
 10. All 6 functional tests requiered are complete and passing.
 
-### Example usage:
+## Additional Dependencies
 
-- https://kel-timestamp-microservice.herokuapp.com/api/timestamp/2015-12-25
-- https://kel-timestamp-microservice.herokuapp.com/api/timestamp/1451001600000
-
-### Example output:
-
-- {"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}
+- [CORS](https://www.npmjs.com/package/cors).
+- [Dotenv](https://www.npmjs.com/package/dotenv).
+- [Express](https://www.npmjs.com/package/express).
+- [Helmet](https://www.npmjs.com/package/helmet).
+- [Method Override](https://www.npmjs.com/package/methodoverride).
+- [MongoDB](https://www.npmjs.com/package/mongodb).
+- [Mongoose](https://www.npmjs.com/package/mongoose).
+- [Pug](https://www.npmjs.com/package/pug).
+- [Jest](https://www.npmjs.com/package/jest).
+- [SuperTest](https://www.npmjs.com/package/supertest).

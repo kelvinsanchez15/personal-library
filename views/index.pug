@@ -4,9 +4,46 @@ html
     include includes/head.pug
     title= title    
   body
-    div.container      
+    div.container.mt-3      
       div.col.text-center          
         a.h1.text-dark(href="/") Personal Library
+
+      h2 Sample Front-End:
+      div.library.col-sm-6.p-3.mb-3
+        div.d-flex.justify-content-between.mb-3
+          h4 Books:
+          div.dropdown.dropdown 
+                button(class="btn btn-success dropdown-toggle", type="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") Add Book
+                div.dropdown-menu.w-100
+                  form.px-4.py-3(action='api/books', method="post")
+                    div.form-group
+                      label(for="title") Title:
+                      input(class="form-control", type="text", name="title", placeholder="Enter a book title")
+                    input(class="btn btn-success" type="submit" value="Submit")
+        ul.list-group
+          if books
+            each book in books
+              div.d-flex.align-items-center
+                button(type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center mr-2", data-toggle="collapse", data-target=`#collapse_${book._id}`)=book.title
+                  |
+                  span.ml-3.badge.badge-pill.badge-primary #{book.comments.length} comments
+                form(action=`api/books/${book._id}?_method=DELETE`, method="post")
+                  input.btn.btn-danger(type="submit" value="Delete")                
+              div.collapse.py-3(id=`collapse_${book._id}`)
+                ul
+                  each comment in book.comments
+                    li=comment
+                form.form-inline(action=`api/books/${book._id}`, method="post")
+                  div.form-group
+                    label.mr-3(sr-only="Add new comment", for="comment")
+                    input(class="form-control", type="text", name="comment", placeholder="Add a new comment")
+                  input(class="btn btn-success" type="submit" value="Submit")
+            form.d-flex.justify-content-center(action=`api/books?_method=DELETE`, method="post")
+              input.btn.btn-danger.mt-3(type="submit" value="Delete All")                
+          else
+            div
+              h3 There's no books!
+
       h2 User Stories:
       ul.list-group.mb-4
         li.list-group-item Nothing from my website will be cached in my client as a security measure.
@@ -19,10 +56,5 @@ html
         li.list-group-item If I try to request a book that doesn't exist I will get a #[em 'no book exists' message].
         li.list-group-item I can send a delete request to /api/books to delete all books in the database. Returned will be #[em 'complete delete successful'] if successful.
         li.list-group-item All 6 functional tests requiered are complete and passing.
-
-
-      h2 Front End Example:
-      a.h3.text-primary(href="/apitest/issues") Go to {project_url}/apitest/issues
-      
 
     include includes/foot.pug

@@ -1,7 +1,9 @@
 const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 const cors = require('cors');
+const Book = require('./models/book');
 require('dotenv').config();
 // Routers
 const apiRouter = require('./routers/api');
@@ -14,6 +16,9 @@ app.use(helmet());
 // Body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Method override
+app.use(methodOverride('_method'));
 
 // Cors used for FCC testing purposes
 app.use(cors({ origin: '*' }));
@@ -39,7 +44,16 @@ app.use(express.static('public'));
 app.set('view engine', 'pug');
 
 // Main route defined
-app.get('/', (req, res) => res.render('index', { title: 'Personal Library' }));
+app.get('/', async (req, res) => {
+  try {
+    let books = await Book.find({});
+    if (books.length <= 0) books = null;
+
+    res.status(200).render('index', { title: 'Personal Library', books });
+  } catch (err) {
+    res.status(404).send(err);
+  }
+});
 
 // Routing for API
 app.use('/api/books', apiRouter);

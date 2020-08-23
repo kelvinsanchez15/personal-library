@@ -18,7 +18,7 @@ html
                   form.px-4.py-3(action='api/books', method="post")
                     div.form-group
                       label(for="title") Title:
-                      input(class="form-control", type="text", name="title", placeholder="Enter a book title")
+                      input(class="form-control", type="text", name="title", placeholder="Enter a book title", required="required")
                     input(class="btn btn-success" type="submit" value="Submit")
         ul.list-group
           if books
@@ -36,7 +36,7 @@ html
                 form.form-inline(action=`api/books/${book._id}`, method="post")
                   div.form-group
                     label.mr-3(sr-only="Add new comment", for="comment")
-                    input(class="form-control", type="text", name="comment", placeholder="Add a new comment")
+                    input(class="form-control", type="text", name="comment", placeholder="Add a new comment", required="required")
                   input(class="btn btn-success" type="submit" value="Submit")
             form.d-flex.justify-content-center(action=`api/books?_method=DELETE`, method="post")
               input.btn.btn-danger.mt-3(type="submit" value="Delete All")                

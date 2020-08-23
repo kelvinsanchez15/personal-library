@@ -17,3 +17,12 @@
 9. I can send a delete request to /api/books to delete all books in the database. Returned will be 'complete delete successful' if successful.
 
 10. All 6 functional tests requiered are complete and passing.
+
+### Example usage:
+
+- https://kel-timestamp-microservice.herokuapp.com/api/timestamp/2015-12-25
+- https://kel-timestamp-microservice.herokuapp.com/api/timestamp/1451001600000
+
+### Example output:
+
+- {"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}

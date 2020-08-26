@@ -39,7 +39,7 @@ html
                     input(class="form-control", type="text", name="comment", placeholder="Add a new comment", required="required")
                   input(class="btn btn-success" type="submit" value="Submit")
             form.d-flex.justify-content-center(action=`api/books?_method=DELETE`, method="post")
-              input.btn.btn-danger.mt-3(type="submit" value="Delete All")                
+              input.btn.btn-warning.mt-3(type="submit" value="Delete All")                
           else
             div
               h3 There's no books!
